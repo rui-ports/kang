@@ -28,7 +28,6 @@ jobs:
            sudo apt install python3
        - name: Run
          run: |
-           git clone 
            git clone https://${{ secrets.EMAIL }}":${{ secrets.PASSWORD }}"@github.com/rui-ports/mirroring.git mbot
            cd mbot
            sudo docker build . -t mirror-bot
