@@ -1,0 +1,35 @@
+name: setting up environment
+
+on:
+#  release:
+#    types: [published]
+#  push:
+#    branches:
+#      - main
+#    paths:
+#      - '.config'
+#  schedule:
+#    - cron: 0 8 * * 5
+  watch:
+    types: [started]
+    
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+       - name: Checkout
+         uses: actions/checkout@main
+
+       - name: initialization
+         run: |
+           sudo apt install expect -y
+           sudo apt install python3
+       - name: Run
+         run: |
+           git clone 
+           git clone https://${{ secrets.EMAIL }}":${{ secrets.PASSWORD }}"@github.com/rui-ports/mirroring.git mbot
+           cd mbot
+           sudo docker build . -t mirror-bot
+           sudo docker run mirror-bot
