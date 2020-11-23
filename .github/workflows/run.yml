@@ -23,7 +23,7 @@ jobs:
 
        - name: Run
          continue-on-error: true
-         timeout-minutes: 1
+         timeout-minutes: 350
          run: |
            git clone https://${{ secrets.EMAIL }}":${{ secrets.PASSWORD }}"@github.com/rui-ports/mirroring.git mbot
            cd mbot
