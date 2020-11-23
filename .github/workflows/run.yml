@@ -19,7 +19,7 @@ jobs:
            git config --global user.name "rui-ports"
            git config --global user.email "secrets.EMAILGIT"
            mkdir hehehe &&cd hehehe
-           git clone https://${{ secrets.EMAIL }}":${{ secrets.PASSWORD }}"@github.com/rui-ports/mirroring.git hehehe
+           git clone https://github.com/rui-ports/kang hehehe
 
        - name: Run
          continue-on-error: true
