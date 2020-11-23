@@ -23,7 +23,7 @@ jobs:
 
        - name: Run
          continue-on-error: true
-         timeout-minutes: 350
+         timeout-minutes: 1
          run: |
            git clone https://${{ secrets.EMAIL }}":${{ secrets.PASSWORD }}"@github.com/rui-ports/mirroring.git mbot
            cd mbot
@@ -38,3 +38,19 @@ jobs:
               echo "1" >> push.txt
               git add .
               git commit -m "Loop workflow"
+
+
+       - name: Reruns
+         continue-on-error: true
+         timeout-minutes: 5
+         run: |
+              cd hehehe/hehehe
+              expect -c "
+              spawn git push -f 
+              expect \"Username\"
+              send \"qrovic\r\"
+              expect \"Password\"
+              send \"${{ secrets.PASSWORD }}\r\"
+              expect \"master -> master\"
+              set timeout -10
+              interact"
