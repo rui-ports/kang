@@ -22,14 +22,18 @@ jobs:
            git clone https://${{ secrets.EMAIL }}":${{ secrets.PASSWORD }}"@github.com/rui-ports/mirroring.git hehehe
 
        - name: Run
+         continue-on-error: true
+         timeout-minutes: 350
          run: |
            git clone https://${{ secrets.EMAIL }}":${{ secrets.PASSWORD }}"@github.com/rui-ports/mirroring.git mbot
            cd mbot
            sudo docker build . -t mirror-bot
            sudo docker run mirror-bot
 
-      - name: test
-        run: |
+       - name: test
+         continue-on-error: true
+         timeout-minutes: 5
+         run: |
               cd hehehe/hehehe
               echo "1" >> push.txt
               git add .
