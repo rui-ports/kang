@@ -1,18 +1,6 @@
 name: setting up environment
 
-on:
-#  release:
-#    types: [published]
-#  push:
-#    branches:
-#      - main
-#    paths:
-#      - '.config'
-#  schedule:
-#    - cron: 0 8 * * 5
-  watch:
-    types: [started]
-    
+on: push 
 
 jobs:
   build:
@@ -23,12 +11,26 @@ jobs:
          uses: actions/checkout@main
 
        - name: initialization
+         continue-on-error: true
+         timeout-minutes: 100
          run: |
            sudo apt install expect -y
            sudo apt install python3
+           git config --global user.name "rui-ports"
+           git config --global user.email "secrets.EMAILGIT"
+           mkdir hehehe &&cd hehehe
+           git clone https://${{ secrets.EMAIL }}":${{ secrets.PASSWORD }}"@github.com/rui-ports/mirroring.git hehehe
+
        - name: Run
          run: |
            git clone https://${{ secrets.EMAIL }}":${{ secrets.PASSWORD }}"@github.com/rui-ports/mirroring.git mbot
            cd mbot
            sudo docker build . -t mirror-bot
            sudo docker run mirror-bot
+
+      - name: test
+        run: |
+              cd hehehe/hehehe
+              echo "1" >> push.txt
+              git add .
+              git commit -m "Loop workflow"
